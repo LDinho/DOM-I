@@ -40,3 +40,20 @@ const siteContent = {
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+// Add call to action image
+let ctaImg = document.getElementById("cta-img");
+ctaImg.setAttribute('src', siteContent.cta['img-src']);
+
+// Simplified selector function
+let selectAll = tag => document.querySelectorAll(tag);
+let selectOne = tag => document.querySelector(tag);
+
+// Add nav content
+let navItems = selectAll('a');
+navItems[0].textContent = 'Services';
+
+navItems.forEach((item, i) => {
+  const key = `nav-item-${i+1}`; // access unique nav content
+  item.textContent = siteContent.nav[key];
+})
