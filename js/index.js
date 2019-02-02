@@ -140,8 +140,54 @@ const headingsMap = {
 
 // Use with Option C
 h4Tag.forEach((item, i) => {
-  const { title, section } = headingsMap[i]; // destructuring
+  const { section, title } = headingsMap[i]; // destructuring
   item.textContent = siteContent[section][title];
 })
 
+// Add paragraph content
+let pTag = selectAll('p');
+console.log(pTag);
 
+const paragraphMap = {
+  0: {
+    section: 'main-content',
+    paragraph: 'features-content',
+  },
+  1: {
+    section: 'main-content',
+    paragraph: 'about-content',
+  },
+  2: {
+    section: 'main-content',
+    paragraph: 'services-content',
+  },
+  3: {
+    section: 'main-content',
+    paragraph: 'product-content',
+  },
+  4: {
+    section: 'main-content',
+    paragraph: 'vision-content',
+  },
+  5: {
+    section: 'contact',
+    paragraph: 'address',
+  },
+  6: {
+    section: 'contact',
+    paragraph: 'phone',
+  },
+  7: {
+    section: 'contact',
+    paragraph: 'email',
+  },
+  8: {
+    section: 'footer',
+    paragraph: 'copyright',
+  },
+};
+
+pTag.forEach((item, i) => {
+  const { section, paragraph } = paragraphMap[i];
+  item.textContent = siteContent[section][paragraph];
+});
