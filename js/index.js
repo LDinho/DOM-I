@@ -41,7 +41,7 @@ const siteContent = {
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
 
-// Add call to action image
+// Add Call to Action Image
 let ctaImg = document.getElementById("cta-img");
 ctaImg.setAttribute('src', siteContent.cta['img-src']);
 
@@ -50,7 +50,8 @@ let selectAll = tag => document.querySelectorAll(tag);
 let selectOne = tag => document.querySelector(tag);
 let createEle = tag => document.createElement(tag);
 
-// Add nav content
+// NAV CONTENT
+const navTag = selectOne('nav')
 const navItems = selectAll('a');
 // navItems[0].textContent = 'Services';
 
@@ -60,7 +61,64 @@ navItems.forEach((item, i) => {
   item.style.color = 'green';
 })
 
-// Call to action section
+// Option A
+// const newAnchorTag1 = createEle('a');
+// const newAnchorTag2 = createEle('a');
+//
+// newAnchorTag1.setAttribute('href', '#');
+// newAnchorTag2.setAttribute('href', '#');
+//
+// newAnchorTag1.textContent = 'Blog';
+// newAnchorTag2.textContent = 'Other';
+//
+// navTag.appendChild(newAnchorTag1);
+// navTag.appendChild(newAnchorTag2);
+
+// Option B
+// const createElementAndAppend = (tag, attribute, content, targetElement, color) => {
+//   const newElement = createEle(tag);
+//   newElement.setAttribute(attribute.type, attribute.value);
+//   newElement.textContent = content;
+//   newElement.style.color = color;
+//   targetElement.appendChild(newElement);
+// }
+//
+// createElementAndAppend('a', {type: 'href', value: '#'}, 'Blog', navTag, 'green');
+// createElementAndAppend('a', {type: 'href', value: '#'}, 'Other', navTag, 'green');
+
+// Option C - use a function that incorporates all of option A above
+const createElementAndAppend = ({tag, attribute, content, targetElement, color}) => {
+  const newElement = createEle(tag);
+  newElement.setAttribute(attribute.type, attribute.value);
+  newElement.textContent = content;
+  newElement.style.color = color;
+  targetElement.appendChild(newElement);
+}
+
+createElementAndAppend({
+  tag: 'a',
+  attribute: {
+    type: 'href',
+    value: '#',
+  },
+  content: 'Blog',
+  targetElement: navTag,
+  color: 'green',
+});
+
+createElementAndAppend({
+  tag: 'a',
+  attribute: {
+    type: 'href',
+    value: '#',
+  },
+  content: 'Other',
+  targetElement: navTag,
+  color: 'green',
+});
+
+
+// Call to Action Section
 const h1Tag = selectOne('h1');
 const BtnTag = selectOne('button');
 // const newDivTag = document.createElement("div"); // if left here outside
@@ -80,7 +138,7 @@ h1ContentArray.forEach((item) => {
 
 BtnTag.textContent = btnContent;
 
-// Add main content
+// MAIN CONTENT
 let middleImg = document.getElementById("middle-img");
 middleImg.setAttribute('src', siteContent['main-content']['middle-img-src']);
 
@@ -147,7 +205,6 @@ h4Tag.forEach((item, i) => {
 
 // Add paragraph content
 let pTag = selectAll('p');
-console.log(pTag);
 
 const paragraphMap = {
   0: {
