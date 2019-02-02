@@ -52,11 +52,12 @@ let createEle = tag => document.createElement(tag);
 
 // Add nav content
 const navItems = selectAll('a');
-navItems[0].textContent = 'Services';
+// navItems[0].textContent = 'Services';
 
 navItems.forEach((item, i) => {
   const key = `nav-item-${i+1}`; // access unique nav content
   item.textContent = siteContent.nav[key];
+  item.style.color = 'green';
 })
 
 // Call to action section
