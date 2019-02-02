@@ -48,6 +48,7 @@ ctaImg.setAttribute('src', siteContent.cta['img-src']);
 // Simplified selector function
 let selectAll = tag => document.querySelectorAll(tag);
 let selectOne = tag => document.querySelector(tag);
+let createEle = tag => document.createElement(tag);
 
 // Add nav content
 const navItems = selectAll('a');
@@ -71,7 +72,7 @@ let btnContent = siteContent.cta.button;
 let h1ContentArray = h1Content.split(' '); //convert string to an array ['Dom', 'is', 'awesome']
 
 h1ContentArray.forEach((item) => {
-  const newDivTag = document.createElement("div");
+  const newDivTag = createEle("div");
   newDivTag.textContent = item;
   h1Tag.appendChild(newDivTag);
 })
@@ -79,3 +80,68 @@ h1ContentArray.forEach((item) => {
 BtnTag.textContent = btnContent;
 
 // Add main content
+let middleImg = document.getElementById("middle-img");
+middleImg.setAttribute('src', siteContent['main-content']['middle-img-src']);
+
+let h4Tag = selectAll('h4');
+
+// Option A
+// h4Tag[0].textContent = siteContent['main-content']['features-h4'];
+// h4Tag[1].textContent = siteContent['main-content']['about-h4'];
+// h4Tag[2].textContent = siteContent['main-content']['services-h4'];
+// h4Tag[3].textContent = siteContent['main-content']['product-h4'];
+// h4Tag[4].textContent = siteContent['main-content']['vision-h4'];
+// h4Tag[5].textContent = siteContent['contact']['contact-h4'];
+
+// Option B
+// const headingsMap = {
+//   0: 'features-h4',
+//   1: 'about-h4',
+//   2: 'services-h4',
+//   3: 'product-h4',
+//   4: 'vision-h4',
+//   5: 'contact-h4',
+// }
+
+// Option C
+const headingsMap = {
+  0: {
+    section: 'main-content',
+    title: 'features-h4',
+  },
+  1: {
+    section: 'main-content',
+    title: 'about-h4',
+  },
+  2: {
+    section: 'main-content',
+    title: 'services-h4',
+  },
+  3: {
+    section: 'main-content',
+    title: 'product-h4',
+  },
+  4: {
+    section: 'main-content',
+    title: 'vision-h4',
+  },
+  5: {
+    section: 'contact',
+    title: 'contact-h4',
+  },
+}
+
+// Use with Option B
+// h4Tag.forEach((item, i) => {
+//   const headingTitle = headingsMap[i];
+//   const section = i === 5 ? '': 'main-content';
+//   item.textContent = siteContent[section][headingTitle];
+// })
+
+// Use with Option C
+h4Tag.forEach((item, i) => {
+  const { title, section } = headingsMap[i]; // destructuring
+  item.textContent = siteContent[section][title];
+})
+
+
