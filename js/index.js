@@ -50,10 +50,32 @@ let selectAll = tag => document.querySelectorAll(tag);
 let selectOne = tag => document.querySelector(tag);
 
 // Add nav content
-let navItems = selectAll('a');
+const navItems = selectAll('a');
 navItems[0].textContent = 'Services';
 
 navItems.forEach((item, i) => {
   const key = `nav-item-${i+1}`; // access unique nav content
   item.textContent = siteContent.nav[key];
 })
+
+// Call to action section
+const h1Tag = selectOne('h1');
+const BtnTag = selectOne('button');
+// const newDivTag = document.createElement("div"); // if left here outside
+// of the forEach below, the new div tag would be
+// overwritten at each pass and not get created for each string item
+
+let h1Content = siteContent.cta.h1;
+let btnContent = siteContent.cta.button;
+
+let h1ContentArray = h1Content.split(' '); //convert string to an array ['Dom', 'is', 'awesome']
+
+h1ContentArray.forEach((item) => {
+  const newDivTag = document.createElement("div");
+  newDivTag.textContent = item;
+  h1Tag.appendChild(newDivTag);
+})
+
+BtnTag.textContent = btnContent;
+
+// Add main content
