@@ -53,12 +53,12 @@ let createEle = tag => document.createElement(tag);
 // NAV CONTENT
 const navTag = selectOne('nav')
 const navItems = selectAll('a');
-// navItems[0].textContent = 'Services';
 
 navItems.forEach((item, i) => {
   const key = `nav-item-${i+1}`; // access unique nav content
   item.textContent = siteContent.nav[key];
   item.style.color = 'green';
+  item.style.fontSize = '20px';
 })
 
 // Option A
@@ -87,11 +87,12 @@ navItems.forEach((item, i) => {
 // createElementAndAppend('a', {type: 'href', value: '#'}, 'Other', navTag, 'green');
 
 // Option C - use a function that incorporates all of option A above
-const createElementAndAppend = ({tag, attribute, content, targetElement, color}) => {
+const createElementAndAppend = ({tag, attribute, content, targetElement, color, fontSize}) => {
   const newElement = createEle(tag);
   newElement.setAttribute(attribute.type, attribute.value);
   newElement.textContent = content;
   newElement.style.color = color;
+  newElement.style.fontSize = fontSize;
   targetElement.appendChild(newElement);
 }
 
@@ -104,6 +105,7 @@ createElementAndAppend({
   content: 'Blog',
   targetElement: navTag,
   color: 'green',
+  fontSize: '20px',
 });
 
 createElementAndAppend({
@@ -115,6 +117,7 @@ createElementAndAppend({
   content: 'Other',
   targetElement: navTag,
   color: 'green',
+  fontSize: '20px',
 });
 
 
